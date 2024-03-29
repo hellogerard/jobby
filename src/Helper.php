@@ -53,13 +53,14 @@ class Helper
     {
         $host = $this->getHost();
         $body = <<<EOF
-$message
+        $message
 
-You can find its output in {$config['output']} on $host.
+        You can find its output in {$config['output']} on $host.
 
-Best,
-jobby@$host
-EOF;
+        Best,
+        jobby@$host
+        EOF;
+        
         $mail = new \Swift_Message();
         $mail->setTo(explode(',', $config['recipients']));
         if(empty($config['mailSubject'])){
@@ -276,14 +277,14 @@ EOF;
     {
         $host = $this->getHost();
         $body = <<<EOF
-$message
+        $message
 
-You can find its output in {$config['output']} on $host.
+        You can find its output in {$config['output']} on $host.
 
-Best,
-jobby@$host
-EOF;
-        $client = new \Maknz\Slack\Client($config['slackUrl']);
+        Best,
+        jobby@$host
+        EOF;
+                $client = new \Maknz\Slack\Client($config['slackUrl']);
         $client->to($config['slackChannel']);
         if($config['slackSender']){
             $client->from($config['slackSender']);
@@ -303,13 +304,13 @@ EOF;
     {
         $host = $this->getHost();
         $body = <<<EOF
-$message
+        $message
 
-You can find its output in {$config['output']} on $host.
+        You can find its output in {$config['output']} on $host.
 
-Best,
-jobby@$host
-EOF;
+        Best,
+        jobby@$host
+        EOF;
         $payload = ['text'=>$body];
         $encoded = json_encode($payload, JSON_UNESCAPED_UNICODE);
         $this->guzzle->post($config['mattermostUrl'], ['body' => $encoded]);
